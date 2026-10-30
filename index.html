@@ -31,19 +31,16 @@
     </div>
 
     <div class="options">
-        <select id="mode">
-            <option value="exact">Точное совпадение</option>
-            <option value="prefix">По началу слова</option>
-            <option value="substring">По фрагменту</option>
-            <option value="wildcard">Маска (* и ?)</option>
-            <option value="regex">Регулярное выражение</option>
-        </select>
+		<label>
+			<input id="regex" type="checkbox">
+			Регулярное выражение
+		</label>
 
-        <label>
-            <input id="yo" type="checkbox">
-            Ё ≠ Е
-        </label>
-    </div>
+		<label>
+			<input id="yo" type="checkbox">
+			Ё ≠ Е
+		</label>
+	</div>
 
     <div id="status">Загрузка данных...</div>
     <div id="results"></div>

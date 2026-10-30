@@ -9,7 +9,7 @@ let currentDistinguishYo = false;
 
 function search() {
     const input = document.getElementById("word").value.trim();
-    const mode = document.getElementById("mode").value;
+    const useRegex = document.getElementById("regex").checked;
     const distinguishYo = document.getElementById("yo").checked;
 
     const results = document.getElementById("results");
@@ -29,11 +29,12 @@ function search() {
         return;
     }
 
-    const query = normalize(input, distinguishYo);
+    const isMask = mode === "normal" && /[*?]/.test(input);
+
     let regex = null;
 
     try {
-        if (mode === "wildcard") {
+        if (isMask) {
             regex = wildcardToRegex(input, distinguishYo);
         }
 
@@ -42,13 +43,16 @@ function search() {
         }
     } catch (error) {
         status.textContent =
-            "Ошибка в регулярном выражении: " + error.message;
+            "Ошибка в поисковом выражении: " + error.message;
         return;
     }
 
-    // Точный поиск сразу показывает словари.
-    if (mode === "exact") {
-        const ids = getDictionaryIds(input.toLowerCase(), distinguishYo);
+    // Точное совпадение в обычном режиме
+    if (mode === "normal" && !isMask) {
+        const ids = getDictionaryIds(
+            input.toLowerCase(),
+            distinguishYo
+        );
 
         if (!ids.length) {
             status.textContent = "Слово не найдено.";
@@ -57,32 +61,20 @@ function search() {
 
         status.textContent = "Найдено словарей: " + ids.length;
 
-        // Показываем блок с результатами точного поиска.
         details.classList.remove("hidden");
         showDictionaries(ids, input);
         return;
     }
 
+    // Поиск по маске или регулярному выражению
     const matches = [];
 
     for (const word of words) {
-        const normalizedWord = normalize(word, distinguishYo);
-        let matched = false;
+        regex.lastIndex = 0;
 
-        if (mode === "prefix") {
-            matched = normalizedWord.startsWith(query);
+        if (regex.test(word)) {
+            matches.push(word);
         }
-
-        if (mode === "substring") {
-            matched = normalizedWord.includes(query);
-        }
-
-        if (mode === "wildcard" || mode === "regex") {
-            regex.lastIndex = 0;
-            matched = regex.test(word);
-        }
-
-        if (matched) matches.push(word);
     }
 
     if (!matches.length) {
