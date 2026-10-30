@@ -1,4 +1,8 @@
 {
+  "explanatory": {
+    "id": "explanatory",
+    "name": "Толковые словари"
+  },
   "universal": {
     "id": "universal",
     "name": "Универсальные словари"
