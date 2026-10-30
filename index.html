@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Индекс русских словников</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="js/utils.js" defer></script>
+<script src="js/dictionaries.js" defer></script>
+<script src="js/search.js" defer></script>
+<script src="js/catalog.js" defer></script>
+<script src="js/app.js" defer></script>
+</head>
+<body>
+
+<header>
+    <h1>Индекс русских словников</h1>
+    <p>Поиск слов по словарям русского языка</p>
+</header>
+
+<nav>
+    <button id="tab-search" class="active">Поиск</button>
+    <button id="tab-catalog">Каталог словарей</button>
+</nav>
+
+<main id="search-page">
+    <div class="search">
+        <input id="word" type="text"
+               placeholder="Введите слово или поисковый запрос">
+        <button id="search">Найти</button>
+    </div>
+
+    <div class="options">
+        <select id="mode">
+            <option value="exact">Точное совпадение</option>
+            <option value="prefix">По началу слова</option>
+            <option value="substring">По фрагменту</option>
+            <option value="wildcard">Маска (* и ?)</option>
+            <option value="regex">Регулярное выражение</option>
+        </select>
+
+        <label>
+            <input id="yo" type="checkbox">
+            Ё ≠ Е
+        </label>
+    </div>
+
+    <div id="status">Загрузка данных...</div>
+    <div id="results"></div>
+    <div id="details" class="hidden"></div>
+</main>
+
+<main id="catalog-page" class="hidden">
+    <div id="catalog-status"></div>
+
+    <div class="search">
+        <input id="catalog-search" type="text"
+               placeholder="Название, автор или описание">
+    </div>
+
+    <div class="options">
+        <select id="catalog-type">
+            <option value="">Все типы словарей</option>
+        </select>
+    </div>
+
+    <div id="catalog"></div>
+</main>
+
+</body>
+</html>

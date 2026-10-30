@@ -1,0 +1,15 @@
+{
+  "wiktionary": {
+    "id": "wiktionary",
+    "name": "Викисловарь",
+    "short_name": "Викисловарь",
+    "author": null,
+    "year": null,
+    "types": [
+      "universal"
+    ],
+    "url": "https://ru.wiktionary.org/",
+    "description": "Свободный многоязычный словарь.",
+    "word_count": 469363
+  }
+}

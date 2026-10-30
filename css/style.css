@@ -1,0 +1,487 @@
+/* Основные настройки */
+
+:root {
+    --background: #f3f6fa;
+    --surface: #ffffff;
+    --primary: #315d89;
+    --primary-hover: #25496f;
+    --primary-light: #eaf1f8;
+    --text: #263648;
+    --muted: #718096;
+    --border: #e1e7ee;
+    --shadow: 0 2px 8px rgba(35, 55, 80, 0.05);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 35px 28px 60px;
+    color: var(--text);
+    background: var(--background);
+    line-height: 1.6;
+}
+
+
+/* Шапка */
+
+header {
+    margin-bottom: 28px;
+}
+
+header h1 {
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin: 0 0 5px;
+    color: #233d59;
+}
+
+header p {
+    color: var(--muted);
+    margin: 0;
+    font-size: 15px;
+}
+
+
+/* Навигация */
+
+nav {
+    display: flex;
+    gap: 6px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 25px;
+}
+
+nav button {
+    padding: 11px 20px;
+    border: none;
+    border-bottom: 3px solid transparent;
+    background: transparent;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--muted);
+    transition: color 0.15s, background 0.15s;
+}
+
+nav button:hover {
+    color: var(--primary);
+    background: var(--primary-light);
+}
+
+nav button.active {
+    color: var(--primary);
+    border-bottom-color: var(--primary);
+}
+
+
+/* Основные области */
+
+main {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: var(--shadow);
+}
+
+
+/* Поиск */
+
+.search {
+    display: flex;
+    gap: 10px;
+    margin: 5px 0 15px;
+}
+
+input[type="text"] {
+    flex: 1;
+    min-width: 0;
+    padding: 12px 14px;
+    font-size: 16px;
+    font-family: inherit;
+    color: var(--text);
+    background: #fff;
+    border: 1px solid #ccd6e1;
+    border-radius: 7px;
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+input[type="text"]:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(49, 93, 137, 0.12);
+}
+
+input::placeholder {
+    color: #9aa6b4;
+}
+
+.search button {
+    padding: 11px 24px;
+    border: 1px solid var(--primary);
+    border-radius: 7px;
+    background: var(--primary);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.search button:hover {
+    background: var(--primary-hover);
+}
+
+
+/* Настройки поиска */
+
+.options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    align-items: center;
+    margin: 14px 0 20px;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.options select {
+    padding: 9px 12px;
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    background: #fff;
+    color: var(--text);
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.options label {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    cursor: pointer;
+}
+
+.options input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--primary);
+    cursor: pointer;
+}
+
+
+/* Статус */
+
+#status,
+#catalog-status {
+    margin: 18px 0;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+
+/* Список результатов */
+
+.word-list {
+    margin-top: 18px;
+    border-top: 1px solid var(--border);
+}
+
+.word-item {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 10px 5px;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.12s;
+}
+
+.word-item:hover {
+    background: #f7f9fc;
+}
+
+.word-item button {
+    padding: 0;
+    border: none;
+    background: none;
+    color: var(--primary);
+    font-family: inherit;
+    font-size: 16px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.word-item button:hover {
+    color: var(--primary-hover);
+    text-decoration: underline;
+}
+
+.word-count {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+
+/* Группы словарей */
+
+.group {
+    margin-top: 27px;
+}
+
+.group h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #334f6c;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 8px;
+    margin-bottom: 5px;
+}
+
+
+/* Отдельный словарь */
+
+.dictionary {
+    padding: 13px 5px;
+    border-bottom: 1px solid var(--border);
+}
+
+.dictionary-button {
+    padding: 0;
+    border: none;
+    background: none;
+    color: var(--primary);
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: left;
+}
+
+.dictionary-button:hover {
+    color: var(--primary-hover);
+    text-decoration: underline;
+}
+
+.dictionary-meta {
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 3px;
+}
+
+.description {
+    color: #586779;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+
+/* Карточка словаря */
+
+.detail-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #294968;
+    margin: 15px 0 20px;
+}
+
+.detail-row {
+    margin: 16px 0;
+}
+
+.detail-label {
+    color: var(--muted);
+    font-size: 13px;
+    margin-bottom: 3px;
+}
+
+.detail-row a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.detail-row a:hover {
+    text-decoration: underline;
+}
+
+
+/* Кнопки возврата */
+
+.back-button {
+    margin: 12px 0;
+    padding: 8px 13px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: #f7f9fc;
+    color: var(--primary);
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.back-button:hover {
+    background: var(--primary-light);
+    border-color: #c6d6e7;
+}
+
+
+/* Пагинация */
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin: 25px 0 10px;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.pagination button {
+    padding: 7px 14px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: #fff;
+    color: var(--primary);
+    cursor: pointer;
+}
+
+.pagination button:hover:not(:disabled) {
+    background: var(--primary-light);
+}
+
+.pagination button:disabled {
+    opacity: 0.4;
+    cursor: default;
+}
+
+
+/* Ссылки и общие элементы */
+
+a {
+    color: var(--primary);
+}
+
+button {
+    font-family: inherit;
+}
+
+button:focus-visible,
+a:focus-visible,
+select:focus-visible {
+    outline: 3px solid rgba(49, 93, 137, 0.25);
+    outline-offset: 2px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+/* Планшеты */
+
+@media (max-width: 750px) {
+    body {
+        padding: 25px 18px 40px;
+    }
+
+    main {
+        padding: 20px;
+    }
+
+    header h1 {
+        font-size: 27px;
+    }
+}
+
+
+/* Мобильные устройства */
+
+@media (max-width: 550px) {
+    body {
+        padding: 20px 12px 30px;
+    }
+
+    header {
+        margin-bottom: 22px;
+    }
+
+    header h1 {
+        font-size: 23px;
+        line-height: 1.3;
+    }
+
+    header p {
+        font-size: 14px;
+    }
+
+    nav {
+        gap: 0;
+        margin-bottom: 16px;
+    }
+
+    nav button {
+        flex: 1;
+        padding: 11px 8px;
+        font-size: 14px;
+    }
+
+    main {
+        padding: 16px 13px;
+        border-radius: 9px;
+    }
+
+    .search {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .search button {
+        width: 100%;
+        padding: 12px;
+    }
+
+    .options {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .options select {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .word-item {
+        padding: 11px 4px;
+    }
+
+    .word-item button {
+        font-size: 16px;
+    }
+
+    .group h2 {
+        font-size: 17px;
+    }
+
+    .dictionary {
+        padding: 12px 3px;
+    }
+
+    .detail-title {
+        font-size: 21px;
+    }
+
+    .pagination {
+        gap: 10px;
+    }
+
+    .pagination button {
+        padding: 8px 11px;
+    }
+}
