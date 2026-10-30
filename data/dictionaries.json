@@ -10,6 +10,7 @@
     ],
     "url": "https://ru.wiktionary.org/",
     "description": "Свободный многоязычный словарь.",
+    "search_url": "https://ru.wiktionary.org/wiki/[word]",
     "word_count": 469363
   }
 }

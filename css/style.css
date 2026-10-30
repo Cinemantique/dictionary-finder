@@ -485,3 +485,60 @@ select:focus-visible {
         padding: 8px 11px;
     }
 }
+
+/* Строка названия словаря и значок поиска */
+
+.dictionary-title-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.dictionary-search-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    margin-left: 4px;
+    flex-shrink: 0;
+    color: var(--primary);
+    text-decoration: none !important;
+    border: none;
+    border-radius: 5px;
+    font-family: Arial, sans-serif;
+    font-size: 24px;
+    line-height: 1;
+}
+
+.dictionary-search-link:hover {
+    background: var(--primary-light);
+    text-decoration: none !important;
+}
+
+/* Заголовок искомого слова */
+
+#details > .detail-title {
+    font-size: 28px;
+    color: #233d59;
+    font-weight: 700;
+    margin: 15px 0 28px;
+}
+
+/* Названия групп словарей */
+
+.group h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #52799e;
+    border-bottom: 1px solid #dce5ee;
+    padding-bottom: 9px;
+    margin-bottom: 8px;
+}
+
+/* Названия словарей */
+
+.dictionary-button {
+    color: #315d89;
+    font-weight: 600;
+}

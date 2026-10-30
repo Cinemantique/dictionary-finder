@@ -59,7 +59,7 @@ function search() {
 
         // Показываем блок с результатами точного поиска.
         details.classList.remove("hidden");
-        showDictionaries(ids);
+        showDictionaries(ids, input);
         return;
     }
 
