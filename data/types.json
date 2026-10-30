@@ -1,4 +1,8 @@
 {
+  "spelling": {
+    "id": "spelling",
+    "name": "Орфографические словари"
+  },
   "explanatory": {
     "id": "explanatory",
     "name": "Толковые словари"
