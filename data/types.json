@@ -6,5 +6,9 @@
   "universal": {
     "id": "universal",
     "name": "Универсальные словари"
+  },
+  "grammatical": {
+    "id": "grammatical",
+    "name": "Грамматические словари"
   }
 }

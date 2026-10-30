@@ -159,6 +159,7 @@ function showDictionaryDetails(id, catalogMode) {
 
         const valueElement = document.createElement("div");
         valueElement.textContent = value;
+		valueElement.style.whiteSpace = "pre-line";
 
         row.appendChild(labelElement);
         row.appendChild(valueElement);
