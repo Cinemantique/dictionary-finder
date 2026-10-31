@@ -41,6 +41,20 @@
     "search_url": "https://gufo.me/dict/efremova/[word]",
     "word_count": 133274
   },
+  "MAS": {
+    "id": "MAS",
+    "name": "Словарь русского языка (МАС), 2-е издание",
+    "short_name": "MAC",
+    "author": "А.П. Евгеньева",
+    "year": "1984",
+    "types": [
+      "explanatory"
+    ],
+    "url": "https://ru.wikipedia.org/wiki/Малый_академический_словарь",
+    "description": null,
+    "search_url": "https://gufo.me/dict/mas/[word]",
+    "word_count": 91882
+  },
   "Ozhegov": {
     "id": "Ozhegov",
     "name": "Толковый словарь русского языка (Ожегов/Шведова)",
