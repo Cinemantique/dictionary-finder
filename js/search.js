@@ -29,7 +29,7 @@ function search() {
         return;
     }
 
-    const isMask = mode === "normal" && /[*?]/.test(input);
+    const isMask = !useRegex && /[*?]/.test(input);
 
     let regex = null;
 
@@ -38,7 +38,7 @@ function search() {
             regex = wildcardToRegex(input, distinguishYo);
         }
 
-        if (mode === "regex") {
+        if (useRegex) {
             regex = prepareRegex(input, distinguishYo);
         }
     } catch (error) {
@@ -48,7 +48,7 @@ function search() {
     }
 
     // Точное совпадение в обычном режиме
-    if (mode === "normal" && !isMask) {
+    if (!useRegex && !isMask) {
         const ids = getDictionaryIds(
             input.toLowerCase(),
             distinguishYo
