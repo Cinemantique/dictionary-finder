@@ -41,6 +41,20 @@
     "search_url": "https://gufo.me/dict/efremova/[word]",
     "word_count": 133274
   },
+  "Ozhegov": {
+    "id": "Ozhegov",
+    "name": "Толковый словарь русского языка (Ожегов/Шведова)",
+    "short_name": "Словарь Ожегова",
+    "author": "С.И. Ожегов, Н.Ю. Шведова",
+    "year": "1992",
+    "types": [
+      "explanatory"
+    ],
+    "url": "https://ru.wikipedia.org/wiki/Словарь_Ожегова",
+    "description": null,
+    "search_url": "https://gufo.me/dict/ozhegov/[word]",
+    "word_count": 64746
+  },
   "Ushakov": {
     "id": "Ushakov",
     "name": "Толковый словарь русского языка под редакцией Д.Н. Ушакова",
