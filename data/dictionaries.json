@@ -27,6 +27,20 @@
     "search_url": "https://gramota.ru/poisk?query=[word]&mode=slovari&dicts[]=42",
     "word_count": 108984
   },
+  "Dal_BDK": {
+    "id": "Dal_BDK",
+    "name": "Словарь Даля, 3-е издание",
+    "short_name": "Даль",
+    "author": "В.И. Даль",
+    "year": "1909",
+    "types": [
+      "explanatory"
+    ],
+    "url": "https://ru.wikipedia.org/wiki/Толковый_словарь_живого_великорусского_языка",
+    "description": null,
+    "search_url": "https://gufo.me/dict/dal/[word]",
+    "word_count": 221257
+  },
   "efremova": {
     "id": "efremova",
     "name": "Большой современный толковый словарь русского языка",
