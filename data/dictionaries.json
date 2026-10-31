@@ -36,10 +36,38 @@
     "types": [
       "explanatory"
     ],
-    "url": "https://orfo.ruslang.ru/",
+    "url": null,
     "description": null,
     "search_url": "https://gufo.me/dict/efremova/[word]",
     "word_count": 133274
+  },
+  "Ushakov": {
+    "id": "Ushakov",
+    "name": "Толковый словарь русского языка под редакцией Д.Н. Ушакова",
+    "short_name": "Словарь Ушакова",
+    "author": "Д.Н. Ушаков",
+    "year": "1940",
+    "types": [
+      "explanatory"
+    ],
+    "url": "https://ru.wikipedia.org/wiki/Словарь_Ушакова",
+    "description": "Один из важнейших толковых словарей русского языка. Изданный в четырёх томах в 1935—1940 годах, он содержит более 90 000 словарных статей и рассчитан на широкий круг читателей.\nВ его составлении принимали участие такие крупные учёные, как В. В. Виноградов, Г. О. Винокур, Б. А. Ларин, С. И. Ожегов, Б. В. Томашевский... Новый словарь восполнял существенный пробел в описании развития русского языка первой трети XX века.",
+    "search_url": "https://gufo.me/dict/ushakov/[word]",
+    "word_count": 87448
+  },
+  "Vasmer": {
+    "id": "Vasmer",
+    "name": "Этимологический словарь русского языка Макса Фасмера",
+    "short_name": "Словарь Фасмера",
+    "author": "Макс Фасмер",
+    "year": "1973",
+    "types": [
+      "etymological"
+    ],
+    "url": "https://ru.wikipedia.org/wiki/Этимологический_словарь_русского_языка_Макса_Фасмера",
+    "description": null,
+    "search_url": "https://etymolog.ruslang.ru/index.php?word=[word]&wholeword=checked&act=search&vasmer=checked",
+    "word_count": 18185
   },
   "wiktionary": {
     "id": "wiktionary",

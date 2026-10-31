@@ -7,6 +7,10 @@
     "id": "explanatory",
     "name": "Толковые словари"
   },
+  "etymological": {
+    "id": "etymological",
+    "name": "Этимологические словари"
+  },
   "universal": {
     "id": "universal",
     "name": "Универсальные словари"
