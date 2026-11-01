@@ -108,7 +108,7 @@
     ],
     "url": "https://ru.wikipedia.org/wiki/Этимологический_словарь_русского_языка_Макса_Фасмера",
     "description": null,
-    "search_url": "https://etymolog.ruslang.ru/index.php?word=[word]&wholeword=checked&act=search&vasmer=checked",
+    "search_url": "https://lexicography.online/etymology/vasmer/[first]/[word]",
     "word_count": 18185
   },
   "wiktionary": {

@@ -75,10 +75,11 @@ function renderGroups(grouped, container, catalogMode, word = null) {
                 const searchLink = document.createElement("a");
                 searchLink.className = "dictionary-search-link";
 
-                const url = dictionary.search_url.replace(
-                    "[word]",
-                    encodeURIComponent(word)
-                );
+                const encodedWord = encodeURIComponent(word);
+
+				const url = dictionary.search_url
+					.replaceAll("[first]", encodeURIComponent(word[0]))
+					.replaceAll("[word]", encodedWord);
 
                 searchLink.href = url;
                 searchLink.target = "_blank";
