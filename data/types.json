@@ -7,6 +7,10 @@
     "id": "explanatory",
     "name": "Толковые словари"
   },
+  "morphemic&derivational": {
+    "id": "morphemic&derivational",
+    "name": "morphemic&derivational"
+  },
   "etymological": {
     "id": "etymological",
     "name": "Этимологические словари"
