@@ -5,7 +5,7 @@
   },
   "explanatory": {
     "id": "explanatory",
-    "name": "Толковые словари"
+    "name": "Основные толковые словари"
   },
   "morphemic&derivational": {
     "id": "morphemic&derivational",
@@ -13,7 +13,7 @@
   },
   "other_explanatory": {
     "id": "other_explanatory",
-    "name": "other_explanatory"
+    "name": "Прочие толковые словари"
   },
   "etymological": {
     "id": "etymological",
