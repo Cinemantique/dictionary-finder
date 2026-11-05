@@ -11,6 +11,10 @@
     "id": "morphemic&derivational",
     "name": "Морфемные и словообразовательные словари"
   },
+  "other_explanatory": {
+    "id": "other_explanatory",
+    "name": "other_explanatory"
+  },
   "etymological": {
     "id": "etymological",
     "name": "Этимологические словари"
