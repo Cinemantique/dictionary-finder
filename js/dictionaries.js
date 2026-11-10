@@ -45,8 +45,18 @@ function renderGroups(grouped, container, catalogMode, word = null) {
         const section = document.createElement("section");
         section.className = "group";
 
+        // Заголовок группы и количество словарей
         const heading = document.createElement("h2");
-        heading.textContent = types[typeId]?.name || typeId;
+
+        const headingName = document.createElement("span");
+        headingName.textContent = types[typeId]?.name || typeId;
+
+        const headingCount = document.createElement("span");
+        headingCount.textContent = grouped[typeId].length;
+
+        heading.appendChild(headingName);
+        heading.appendChild(headingCount);
+
         section.appendChild(heading);
 
         grouped[typeId].sort((a, b) =>
@@ -60,6 +70,7 @@ function renderGroups(grouped, container, catalogMode, word = null) {
             const titleRow = document.createElement("div");
             titleRow.className = "dictionary-title-row";
 
+            // Название словаря
             const button = document.createElement("button");
             button.className = "dictionary-button";
             button.textContent = dictionary.name;
@@ -70,41 +81,34 @@ function renderGroups(grouped, container, catalogMode, word = null) {
 
             titleRow.appendChild(button);
 
-            // Иконка внешнего поиска
+            // Год издания
+            if (dictionary.year) {
+                const year = document.createElement("span");
+                year.className = "dictionary-meta";
+                year.textContent = dictionary.year;
+                titleRow.appendChild(year);
+            }
+
+            // Внешняя ссылка на поиск слова
             if (word !== null && dictionary.search_url) {
                 const searchLink = document.createElement("a");
                 searchLink.className = "dictionary-search-link";
 
                 const encodedWord = encodeURIComponent(word);
 
-				const url = dictionary.search_url
-					.replaceAll("[first]", encodeURIComponent(word[0]))
-					.replaceAll("[word]", encodedWord);
+                const url = dictionary.search_url
+                    .replaceAll("[first]", encodeURIComponent(word[0]))
+                    .replaceAll("[word]", encodedWord);
 
                 searchLink.href = url;
                 searchLink.target = "_blank";
                 searchLink.rel = "noopener noreferrer";
-                searchLink.title = "Найти слово на сайте словаря";
-                searchLink.setAttribute(
-                    "aria-label",
-                    "Найти слово на сайте словаря"
-                );
-
-                searchLink.textContent = "⌕";
+                searchLink.textContent = "Открыть →";
 
                 titleRow.appendChild(searchLink);
             }
 
             item.appendChild(titleRow);
-
-            // В списке показываем только год издания
-            if (dictionary.year) {
-                const meta = document.createElement("div");
-                meta.className = "dictionary-meta";
-                meta.textContent = dictionary.year;
-                item.appendChild(meta);
-            }
-
             section.appendChild(item);
         }
 
@@ -160,7 +164,7 @@ function showDictionaryDetails(id, catalogMode) {
 
         const valueElement = document.createElement("div");
         valueElement.textContent = value;
-		valueElement.style.whiteSpace = "pre-line";
+        valueElement.style.whiteSpace = "pre-line";
 
         row.appendChild(labelElement);
         row.appendChild(valueElement);

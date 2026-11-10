@@ -1,15 +1,15 @@
 /* Основные настройки */
 
 :root {
-    --background: #f3f6fa;
-    --surface: #ffffff;
-    --primary: #315d89;
-    --primary-hover: #25496f;
-    --primary-light: #eaf1f8;
-    --text: #263648;
-    --muted: #718096;
-    --border: #e1e7ee;
-    --shadow: 0 2px 8px rgba(35, 55, 80, 0.05);
+    --background: #f5f1e7;
+    --surface: #fffdf8;
+    --primary: #20543f;
+    --primary-hover: #173f30;
+    --primary-light: #e8eee8;
+    --text: #302e29;
+    --muted: #686456;
+    --border: #ded5c2;
+    --shadow: none;
 }
 
 * {
@@ -17,13 +17,13 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
-    max-width: 1100px;
+    max-width: 1440px;
     margin: 0 auto;
-    padding: 35px 28px 60px;
+    padding: 55px 6.3% 80px;
     color: var(--text);
     background: var(--background);
-    line-height: 1.6;
+    font-family: Georgia, "Times New Roman", serif;
+    line-height: 1.5;
 }
 
 
@@ -34,17 +34,18 @@ header {
 }
 
 header h1 {
-    font-size: 30px;
+    font-size: clamp(36px, 4.5vw, 58px);
     font-weight: 700;
-    letter-spacing: -0.5px;
-    margin: 0 0 5px;
-    color: #233d59;
+    letter-spacing: -1.5px;
+    line-height: 1.15;
+    margin: 0 0 10px;
+    color: #302e29;
 }
 
 header p {
     color: var(--muted);
     margin: 0;
-    font-size: 15px;
+    font-size: 23px;
 }
 
 
@@ -52,42 +53,37 @@ header p {
 
 nav {
     display: flex;
-    gap: 6px;
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 25px;
+    gap: 34px;
+    margin-bottom: 32px;
 }
 
 nav button {
-    padding: 11px 20px;
+    padding: 0 0 8px;
     border: none;
-    border-bottom: 3px solid transparent;
+    border-bottom: 4px solid transparent;
     background: transparent;
     cursor: pointer;
-    font-size: 15px;
-    font-weight: 600;
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    font-weight: 500;
     color: var(--muted);
-    transition: color 0.15s, background 0.15s;
 }
 
 nav button:hover {
     color: var(--primary);
-    background: var(--primary-light);
 }
 
 nav button.active {
     color: var(--primary);
     border-bottom-color: var(--primary);
+    font-weight: 700;
 }
 
 
 /* Основные области */
 
 main {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 25px;
-    box-shadow: var(--shadow);
+    width: 100%;
 }
 
 
@@ -95,40 +91,41 @@ main {
 
 .search {
     display: flex;
-    gap: 10px;
-    margin: 5px 0 15px;
+    gap: 14px;
+    margin: 0 0 17px;
 }
 
 input[type="text"] {
     flex: 1;
     min-width: 0;
-    padding: 12px 14px;
-    font-size: 16px;
-    font-family: inherit;
+    padding: 19px 24px;
+    font-size: 25px;
+    font-family: Georgia, "Times New Roman", serif;
     color: var(--text);
-    background: #fff;
-    border: 1px solid #ccd6e1;
-    border-radius: 7px;
+    background: var(--surface);
+    border: 2px solid #b8c5b9;
+    border-radius: 9px;
     outline: none;
-    transition: border-color 0.15s, box-shadow 0.15s;
+    transition: border-color 0.15s;
 }
 
 input[type="text"]:focus {
     border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(49, 93, 137, 0.12);
 }
 
 input::placeholder {
-    color: #9aa6b4;
+    color: #aaa394;
 }
 
 .search button {
-    padding: 11px 24px;
-    border: 1px solid var(--primary);
-    border-radius: 7px;
+    min-width: 150px;
+    padding: 15px 30px;
+    border: 2px solid var(--primary);
+    border-radius: 9px;
     background: var(--primary);
     color: #fff;
-    font-size: 15px;
+    font-family: Arial, sans-serif;
+    font-size: 21px;
     font-weight: 600;
     cursor: pointer;
     transition: background 0.15s;
@@ -146,32 +143,44 @@ input::placeholder {
     flex-wrap: wrap;
     gap: 14px;
     align-items: center;
-    margin: 14px 0 20px;
-    color: var(--muted);
-    font-size: 14px;
-}
-
-.options select {
-    padding: 9px 12px;
-    border: 1px solid var(--border);
-    border-radius: 7px;
-    background: #fff;
+    margin: 15px 0 30px;
     color: var(--text);
-    font-size: 14px;
-    cursor: pointer;
+    font-family: Arial, sans-serif;
+    font-size: 17px;
 }
 
 .options label {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 7px;
+    gap: 9px;
+    padding: 8px 19px;
+    border: 1px solid #cfc4ae;
+    border-radius: 30px;
     cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+}
+
+.options label:hover {
+    background: #eee9dd;
+    border-color: var(--primary);
 }
 
 .options input[type="checkbox"] {
-    width: 16px;
-    height: 16px;
+    width: 17px;
+    height: 17px;
+    margin: 0;
     accent-color: var(--primary);
+    cursor: pointer;
+}
+
+.options select {
+    padding: 10px 15px;
+    border: 1px solid #cfc4ae;
+    border-radius: 25px;
+    background: var(--surface);
+    color: var(--text);
+    font-family: Arial, sans-serif;
+    font-size: 16px;
     cursor: pointer;
 }
 
@@ -180,16 +189,16 @@ input::placeholder {
 
 #status,
 #catalog-status {
-    margin: 18px 0;
-    color: var(--muted);
-    font-size: 14px;
+    margin: 25px 0 24px;
+    color: var(--text);
+    font-size: 23px;
 }
 
 
-/* Список результатов */
+/* Список результатов поиска */
 
 .word-list {
-    margin-top: 18px;
+    margin-top: 20px;
     border-top: 1px solid var(--border);
 }
 
@@ -197,14 +206,13 @@ input::placeholder {
     display: flex;
     align-items: baseline;
     flex-wrap: wrap;
-    gap: 8px;
-    padding: 10px 5px;
+    gap: 12px;
+    padding: 12px 6px;
     border-bottom: 1px solid var(--border);
-    transition: background 0.12s;
 }
 
 .word-item:hover {
-    background: #f7f9fc;
+    background: rgba(255, 255, 255, 0.35);
 }
 
 .word-item button {
@@ -213,92 +221,119 @@ input::placeholder {
     background: none;
     color: var(--primary);
     font-family: inherit;
-    font-size: 16px;
+    font-size: 20px;
     text-align: left;
     cursor: pointer;
 }
 
 .word-item button:hover {
-    color: var(--primary-hover);
     text-decoration: underline;
 }
 
 .word-count {
     color: var(--muted);
-    font-size: 13px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
 }
 
 
 /* Группы словарей */
 
 .group {
-    margin-top: 27px;
+    margin-top: 30px;
 }
 
 .group h2 {
-    font-size: 18px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 15px;
+    font-family: Arial, sans-serif;
+    font-size: 19px;
     font-weight: 700;
-    color: #334f6c;
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 8px;
-    margin-bottom: 5px;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+    color: var(--primary);
+    border-bottom: 3px solid var(--primary);
+    padding-bottom: 7px;
+    margin: 0 0 5px;
 }
 
 
 /* Отдельный словарь */
 
 .dictionary {
-    padding: 13px 5px;
+    padding: 15px 6px;
     border-bottom: 1px solid var(--border);
+}
+
+.dictionary-title-row {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
 }
 
 .dictionary-button {
     padding: 0;
     border: none;
     background: none;
-    color: var(--primary);
+    color: var(--text);
     font-family: inherit;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
+    font-size: 21px;
+    font-weight: 400;
     text-align: left;
+    cursor: pointer;
 }
 
 .dictionary-button:hover {
-    color: var(--primary-hover);
+    color: var(--primary);
     text-decoration: underline;
 }
 
 .dictionary-meta {
     color: var(--muted);
-    font-size: 13px;
+    font-family: Arial, sans-serif;
+    font-size: 17px;
     margin-top: 3px;
 }
 
-.description {
-    color: #586779;
-    font-size: 14px;
-    margin-top: 5px;
+.dictionary-search-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--primary);
+    text-decoration: none !important;
+    font-family: Arial, sans-serif;
+    font-size: 19px;
+    font-weight: 700;
+}
+
+.dictionary-search-link:hover {
+    color: var(--primary-hover);
+    text-decoration: underline !important;
 }
 
 
 /* Карточка словаря */
 
 .detail-title {
-    font-size: 24px;
+    font-size: 30px;
     font-weight: 700;
-    color: #294968;
-    margin: 15px 0 20px;
+    color: var(--text);
+    margin: 15px 0 28px;
 }
 
 .detail-row {
-    margin: 16px 0;
+    margin: 20px 0;
+    font-size: 18px;
 }
 
 .detail-label {
     color: var(--muted);
-    font-size: 13px;
-    margin-bottom: 3px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    margin-bottom: 4px;
 }
 
 .detail-row a {
@@ -315,18 +350,18 @@ input::placeholder {
 
 .back-button {
     margin: 12px 0;
-    padding: 8px 13px;
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    background: #f7f9fc;
+    padding: 9px 16px;
+    border: 1px solid #cfc4ae;
+    border-radius: 25px;
+    background: transparent;
     color: var(--primary);
-    font-size: 14px;
+    font-family: Arial, sans-serif;
+    font-size: 15px;
     cursor: pointer;
 }
 
 .back-button:hover {
     background: var(--primary-light);
-    border-color: #c6d6e7;
 }
 
 
@@ -336,17 +371,18 @@ input::placeholder {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 16px;
-    margin: 25px 0 10px;
+    gap: 18px;
+    margin: 30px 0 15px;
     color: var(--muted);
-    font-size: 14px;
+    font-family: Arial, sans-serif;
+    font-size: 15px;
 }
 
 .pagination button {
-    padding: 7px 14px;
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    background: #fff;
+    padding: 9px 17px;
+    border: 1px solid #cfc4ae;
+    border-radius: 25px;
+    background: var(--surface);
     color: var(--primary);
     cursor: pointer;
 }
@@ -374,8 +410,8 @@ button {
 button:focus-visible,
 a:focus-visible,
 select:focus-visible {
-    outline: 3px solid rgba(49, 93, 137, 0.25);
-    outline-offset: 2px;
+    outline: 3px solid rgba(32, 84, 63, 0.25);
+    outline-offset: 3px;
 }
 
 .hidden {
@@ -385,17 +421,25 @@ select:focus-visible {
 
 /* Планшеты */
 
-@media (max-width: 750px) {
+@media (max-width: 850px) {
     body {
-        padding: 25px 18px 40px;
-    }
-
-    main {
-        padding: 20px;
+        padding: 35px 5% 60px;
     }
 
     header h1 {
-        font-size: 27px;
+        font-size: 42px;
+    }
+
+    header p {
+        font-size: 19px;
+    }
+
+    input[type="text"] {
+        font-size: 21px;
+    }
+
+    .dictionary-button {
+        font-size: 19px;
     }
 }
 
@@ -404,77 +448,100 @@ select:focus-visible {
 
 @media (max-width: 550px) {
     body {
-        padding: 20px 12px 30px;
+        padding: 24px 16px 40px;
     }
 
     header {
-        margin-bottom: 22px;
+        margin-bottom: 25px;
     }
 
     header h1 {
-        font-size: 23px;
-        line-height: 1.3;
+        font-size: 31px;
+        letter-spacing: -0.7px;
     }
 
     header p {
-        font-size: 14px;
+        font-size: 16px;
     }
 
     nav {
-        gap: 0;
-        margin-bottom: 16px;
+        gap: 22px;
+        margin-bottom: 25px;
     }
 
     nav button {
-        flex: 1;
-        padding: 11px 8px;
-        font-size: 14px;
-    }
-
-    main {
-        padding: 16px 13px;
-        border-radius: 9px;
+        font-size: 16px;
+        padding-bottom: 7px;
     }
 
     .search {
         flex-direction: column;
-        gap: 8px;
+        gap: 9px;
+    }
+
+    input[type="text"] {
+        width: 100%;
+        padding: 15px 16px;
+        font-size: 20px;
     }
 
     .search button {
         width: 100%;
-        padding: 12px;
+        min-width: 0;
+        padding: 13px;
+        font-size: 18px;
     }
 
     .options {
         flex-direction: column;
         align-items: flex-start;
-        gap: 12px;
+        gap: 10px;
+        margin-bottom: 25px;
+        font-size: 14px;
     }
 
-    .options select {
-        width: 100%;
-        max-width: 100%;
+    .options label {
+        padding: 7px 14px;
     }
 
-    .word-item {
-        padding: 11px 4px;
+    #status,
+    #catalog-status {
+        font-size: 18px;
     }
 
-    .word-item button {
-        font-size: 16px;
+    .group {
+        margin-top: 25px;
     }
 
     .group h2 {
-        font-size: 17px;
+        font-size: 15px;
+        letter-spacing: 0.3px;
+        border-bottom-width: 2px;
     }
 
     .dictionary {
-        padding: 12px 3px;
+        padding: 13px 3px;
+    }
+
+    .dictionary-title-row {
+        flex-wrap: wrap;
+        gap: 5px 12px;
+    }
+
+    .dictionary-button {
+        font-size: 18px;
+    }
+
+    .dictionary-meta {
+        font-size: 14px;
     }
 
     .detail-title {
-        font-size: 21px;
+        font-size: 24px;
+    }
+
+    .detail-row {
+        font-size: 16px;
     }
 
     .pagination {
@@ -482,63 +549,52 @@ select:focus-visible {
     }
 
     .pagination button {
-        padding: 8px 11px;
+        padding: 8px 12px;
     }
 }
 
-/* Строка названия словаря и значок поиска */
+/* Строка словаря: название, год и внешняя ссылка */
 
 .dictionary-title-row {
     display: flex;
-    align-items: center;
-    gap: 12px;
+    align-items: baseline;
+    gap: 20px;
+}
+
+.dictionary-meta {
+    margin-left: auto;
+    margin-top: 0;
+    flex-shrink: 0;
+    font-size: 17px;
 }
 
 .dictionary-search-link {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 28px;
-    height: 28px;
-    margin-left: 4px;
     flex-shrink: 0;
     color: var(--primary);
-    text-decoration: none !important;
-    border: none;
-    border-radius: 5px;
     font-family: Arial, sans-serif;
-    font-size: 24px;
-    line-height: 1;
+    font-size: 17px;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
 }
 
 .dictionary-search-link:hover {
-    background: var(--primary-light);
-    text-decoration: none !important;
+    color: var(--primary-hover);
+    text-decoration: underline;
 }
 
-/* Заголовок искомого слова */
+@media (max-width: 550px) {
+    .dictionary-title-row {
+        flex-wrap: wrap;
+        gap: 6px 12px;
+    }
 
-#details > .detail-title {
-    font-size: 28px;
-    color: #233d59;
-    font-weight: 700;
-    margin: 15px 0 28px;
-}
+    .dictionary-meta {
+        margin-left: auto;
+        font-size: 14px;
+    }
 
-/* Названия групп словарей */
-
-.group h2 {
-    font-size: 18px;
-    font-weight: 600;
-    color: #52799e;
-    border-bottom: 1px solid #dce5ee;
-    padding-bottom: 9px;
-    margin-bottom: 8px;
-}
-
-/* Названия словарей */
-
-.dictionary-button {
-    color: #315d89;
-    font-weight: 600;
+    .dictionary-search-link {
+        font-size: 14px;
+    }
 }
