@@ -3,6 +3,10 @@
     "id": "spelling",
     "name": "Орфографические словари"
   },
+  "orthoepic": {
+    "id": "orthoepic",
+    "name": "Орфоэпические словари"
+  },
   "explanatory": {
     "id": "explanatory",
     "name": "Основные толковые словари"

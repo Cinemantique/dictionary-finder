@@ -1,5 +1,23 @@
 // Отображение словарей, сгруппированных по типам
 
+const TYPE_ORDER = [
+    "universal",
+    "explanatory",
+    "foreign_words",
+    "terminological",
+	"other_explanatory",
+    "historical",
+    "dialectal",
+    "spelling",
+    "orthoepic",
+	"morphemic&derivational",
+    "etymological",
+    "phraseological",
+    "synonyms",
+    "antonyms",
+    "frequency"
+];
+
 function showDictionaries(ids, word = null, onBack = null) {
     const details = document.getElementById("details");
     details.innerHTML = "";
@@ -41,7 +59,7 @@ function showDictionaries(ids, word = null, onBack = null) {
 // Отображение групп словарей
 
 function renderGroups(grouped, container, catalogMode, word = null) {
-    for (const typeId of Object.keys(grouped).sort()) {
+    for (const typeId of TYPE_ORDER.filter(id => grouped[id])) {
         const section = document.createElement("section");
         section.className = "group";
 
