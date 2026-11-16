@@ -3,6 +3,10 @@
     "id": "spelling",
     "name": "Орфографические словари"
   },
+  "other_explanatory": {
+    "id": "other_explanatory",
+    "name": "Прочие толковые словари"
+  },
   "orthoepic": {
     "id": "orthoepic",
     "name": "Орфоэпические словари"
@@ -14,10 +18,6 @@
   "morphemic&derivational": {
     "id": "morphemic&derivational",
     "name": "Морфемные и словообразовательные словари"
-  },
-  "other_explanatory": {
-    "id": "other_explanatory",
-    "name": "Прочие толковые словари"
   },
   "etymological": {
     "id": "etymological",
