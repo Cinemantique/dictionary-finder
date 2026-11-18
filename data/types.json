@@ -7,6 +7,10 @@
     "id": "other_explanatory",
     "name": "Прочие толковые словари"
   },
+  "etymological": {
+    "id": "etymological",
+    "name": "Этимологические словари"
+  },
   "orthoepic": {
     "id": "orthoepic",
     "name": "Орфоэпические словари"
@@ -19,13 +23,13 @@
     "id": "morphemic&derivational",
     "name": "Морфемные и словообразовательные словари"
   },
-  "etymological": {
-    "id": "etymological",
-    "name": "Этимологические словари"
-  },
   "universal": {
     "id": "universal",
     "name": "Универсальные словари"
+  },
+  "historical": {
+    "id": "historical",
+    "name": "Исторические словари"
   },
   "grammatical": {
     "id": "grammatical",
