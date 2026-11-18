@@ -1,7 +1,7 @@
 {
   "spelling": {
     "id": "spelling",
-    "name": "Орфографические словари"
+    "name": "Орфографические и грамматические словари"
   },
   "other_explanatory": {
     "id": "other_explanatory",
@@ -30,9 +30,5 @@
   "historical": {
     "id": "historical",
     "name": "Исторические словари"
-  },
-  "grammatical": {
-    "id": "grammatical",
-    "name": "Грамматические словари"
   }
 }
