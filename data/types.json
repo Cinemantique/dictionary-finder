@@ -1,4 +1,8 @@
 {
+  "historical": {
+    "id": "historical",
+    "name": "Исторические словари"
+  },
   "spelling": {
     "id": "spelling",
     "name": "Орфографические и грамматические словари"
@@ -26,9 +30,5 @@
   "universal": {
     "id": "universal",
     "name": "Универсальные словари"
-  },
-  "historical": {
-    "id": "historical",
-    "name": "Исторические словари"
   }
 }
