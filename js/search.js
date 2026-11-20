@@ -1,186 +1,119 @@
 const RESULTS_PER_PAGE = 100;
+const results = document.getElementById("results");
+const details = document.getElementById("details");
+const searchStatus = document.getElementById("status");
+let searchVersion = 0;
 
-let currentMatches = [];
-let currentPage = 1;
-let currentDistinguishYo = false;
-
-
-// Поиск
-
-function search() {
-    const input = document.getElementById("word").value.trim();
-    const useRegex = document.getElementById("regex").checked;
+async function search() {
+    const query = document.getElementById("word").value.trim();
+    const regex = document.getElementById("regex").checked;
     const distinguishYo = document.getElementById("yo").checked;
 
-    const results = document.getElementById("results");
-    const details = document.getElementById("details");
-    const status = document.getElementById("status");
-
-    results.innerHTML = "";
-    details.innerHTML = "";
+    searchVersion++;
+    results.replaceChildren();
+    details.replaceChildren();
     details.classList.add("hidden");
     results.classList.remove("hidden");
 
-    currentMatches = [];
-    currentPage = 1;
-
-    if (!input) {
-        status.textContent = "Введите поисковый запрос.";
+    if (!query) {
+        searchStatus.textContent = "Введите поисковый запрос.";
         return;
     }
 
-    const isMask = !useRegex && /[*?]/.test(input);
+    if (regex || /[*?]/u.test(query)) {
+        await showMatchPage({ query, regex, distinguishYo }, 1);
+    } else {
+        searchStatus.textContent = "Поиск по словникам…";
+        await openWord(query, distinguishYo);
+    }
+}
 
-    let regex = null;
-
+async function showMatchPage(query, page) {
+    const version = ++searchVersion;
+    searchStatus.textContent = "Поиск по словникам…";
     try {
-        if (isMask) {
-            regex = wildcardToRegex(input, distinguishYo);
-        }
-
-        if (useRegex) {
-            regex = prepareRegex(input, distinguishYo);
-        }
+        const result = await requestSearch("page", { ...query, page, pageSize: RESULTS_PER_PAGE });
+        if (version === searchVersion) renderSearchResults(result, query, page);
     } catch (error) {
-        status.textContent =
-            "Ошибка в поисковом выражении: " + error.message;
-        return;
+        if (version === searchVersion) searchStatus.textContent = error.message;
     }
+}
 
-    // Точное совпадение в обычном режиме
-    if (!useRegex && !isMask) {
-        const ids = getDictionaryIds(
-            input.toLowerCase(),
-            distinguishYo
-        );
-
+async function openWord(word, distinguishYo, fromResults = false) {
+    const version = ++searchVersion;
+    try {
+        const ids = await requestSearch("lookup", { word, distinguishYo });
+        if (version !== searchVersion) return;
         if (!ids.length) {
-            status.textContent = "Слово не найдено.";
+            searchStatus.textContent = "Слово не найдено.";
+            return;
+        }
+        await loadCatalog();
+        if (version !== searchVersion) return;
+
+        details.classList.remove("hidden");
+        if (!fromResults) {
+            searchStatus.textContent = "Найдено словарей: " + ids.length;
+            showDictionaries(ids, word);
             return;
         }
 
-        status.textContent = "Найдено словарей: " + ids.length;
-
-        details.classList.remove("hidden");
-        showDictionaries(ids, input);
-        return;
+        results.classList.add("hidden");
+        showDictionaries(ids, word, () => {
+            details.classList.add("hidden");
+            results.classList.remove("hidden");
+        });
+    } catch (error) {
+        if (version === searchVersion) searchStatus.textContent = error.message;
     }
-
-    // Поиск по маске или регулярному выражению
-    const matches = [];
-
-    for (const word of words) {
-        regex.lastIndex = 0;
-
-        if (regex.test(word)) {
-            matches.push(word);
-        }
-    }
-
-    if (!matches.length) {
-        status.textContent = "Совпадений не найдено.";
-        return;
-    }
-
-    currentMatches = matches.sort((a, b) =>
-        a.localeCompare(b, "ru")
-    );
-
-    currentDistinguishYo = distinguishYo;
-    currentPage = 1;
-
-    renderSearchResults();
 }
 
+function renderSearchResults({ entries, total }, query, page) {
+    results.replaceChildren();
+    if (!total) {
+        searchStatus.textContent = "Совпадений не найдено.";
+        return;
+    }
 
-// Отображение одной страницы результатов
-
-function renderSearchResults() {
-    const results = document.getElementById("results");
-    const status = document.getElementById("status");
-
-    results.innerHTML = "";
-
-    const totalPages = Math.ceil(
-        currentMatches.length / RESULTS_PER_PAGE
-    );
-
-    const start = (currentPage - 1) * RESULTS_PER_PAGE;
-
-    const pageMatches = currentMatches.slice(
-        start,
-        start + RESULTS_PER_PAGE
-    );
-
-    status.textContent =
-        "Найдено слов: " +
-        currentMatches.length.toLocaleString("ru-RU") +
-        " · Страница " + currentPage + " из " + totalPages;
+    const pages = Math.ceil(total / RESULTS_PER_PAGE);
+    searchStatus.textContent = "Найдено слов: " + total.toLocaleString("ru-RU") +
+        " · Страница " + page + " из " + pages;
 
     const list = document.createElement("div");
     list.className = "word-list";
-
-    for (const word of pageMatches) {
-        const ids = getDictionaryIds(word, currentDistinguishYo);
-
+    for (const [word, dictionaries] of entries) {
         const row = document.createElement("div");
         row.className = "word-item";
 
         const button = document.createElement("button");
         button.textContent = word;
-
-        button.addEventListener("click", () => {
-            const details = document.getElementById("details");
-
-            results.classList.add("hidden");
-            details.classList.remove("hidden");
-
-            showDictionaries(ids, word, () => {
-                details.classList.add("hidden");
-                results.classList.remove("hidden");
-            });
-        });
+        button.addEventListener("click", () => void openWord(word, query.distinguishYo, true));
 
         const count = document.createElement("span");
         count.className = "word-count";
-        count.textContent = "словарей: " + ids.length;
+        count.textContent = "словарей: " + dictionaries;
 
-        row.appendChild(button);
-        row.appendChild(count);
-        list.appendChild(row);
+        row.append(button, count);
+        list.append(row);
     }
-
-    results.appendChild(list);
-
-    // Навигация по страницам
+    results.append(list);
 
     const pagination = document.createElement("div");
     pagination.className = "pagination";
 
     const previous = document.createElement("button");
     previous.textContent = "← Назад";
-    previous.disabled = currentPage === 1;
-
-    previous.addEventListener("click", () => {
-        currentPage--;
-        renderSearchResults();
-    });
+    previous.disabled = page === 1;
+    previous.addEventListener("click", () => void showMatchPage(query, page - 1));
 
     const pageInfo = document.createElement("span");
-    pageInfo.textContent = currentPage + " / " + totalPages;
+    pageInfo.textContent = page + " / " + pages;
 
     const next = document.createElement("button");
     next.textContent = "Вперёд →";
-    next.disabled = currentPage === totalPages;
+    next.disabled = page === pages;
+    next.addEventListener("click", () => void showMatchPage(query, page + 1));
 
-    next.addEventListener("click", () => {
-        currentPage++;
-        renderSearchResults();
-    });
-
-    pagination.appendChild(previous);
-    pagination.appendChild(pageInfo);
-    pagination.appendChild(next);
-
-    results.appendChild(pagination);
+    pagination.append(previous, pageInfo, next);
+    results.append(pagination);
 }

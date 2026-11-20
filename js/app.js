@@ -1,107 +1,70 @@
-// Общие данные приложения
-
-let index = {};
-let normalizedIndex = {};
-let words = [];
 let dictionaries = {};
 let types = {};
+let catalogRequest;
+let catalogRendered = false;
 
+async function fetchCatalogFile(name) {
+    const response = await fetch(`data/${name}.json`);
+    if (!response.ok) throw new Error("Не удалось загрузить каталог словарей.");
+    return response.json();
+}
 
-// Загрузка данных
+function loadCatalog() {
+    catalogRequest ??= Promise.all([
+        fetchCatalogFile("dictionaries"),
+        fetchCatalogFile("types"),
+    ]).then(([loadedDictionaries, loadedTypes]) => {
+        dictionaries = loadedDictionaries;
+        types = loadedTypes;
+        const select = document.getElementById("catalog-type");
+        for (const id of Object.keys(types).sort()) {
+            select.add(new Option(types[id].name, id));
+        }
+    }).catch(error => {
+        catalogRequest = undefined;
+        throw error;
+    });
+    return catalogRequest;
+}
 
-async function loadData() {
+function countLabel(count, forms) {
+    const units = count % 10;
+    const tens = count % 100;
+    const index = tens >= 11 && tens <= 14 ? 2 : units === 1 ? 0 : units >= 2 && units <= 4 ? 1 : 2;
+    return `${count.toLocaleString("ru-RU")} ${forms[index]}`;
+}
+
+if (typeof INDEX_SUMMARY !== "undefined") {
+    const words = countLabel(INDEX_SUMMARY.wordCount, ["заголовок", "заголовка", "заголовков"]);
+    const sources = countLabel(INDEX_SUMMARY.dictionaryCount, ["словарь", "словаря", "словарей"]);
+    document.getElementById("index-summary").textContent = `${words} · ${sources}`;
+}
+
+async function refreshCatalog() {
+    const status = document.getElementById("catalog-status");
+    if (!catalogRequest) status.textContent = "Загрузка каталога…";
     try {
-        const [i, n, w, d, t] = await Promise.all([
-            fetch("data/index.json"),
-            fetch("data/normalized_index.json"),
-            fetch("data/words.json"),
-            fetch("data/dictionaries.json"),
-            fetch("data/types.json")
-        ]);
-
-        if (![i, n, w, d, t].every(response => response.ok)) {
-            throw new Error("Не удалось загрузить данные");
-        }
-
-        [index, normalizedIndex, words, dictionaries, types] =
-            await Promise.all([
-                i.json(),
-                n.json(),
-                w.json(),
-                d.json(),
-                t.json()
-            ]);
-
-        document.getElementById("status").textContent =
-            "Данные загружены. Слов в индексе: " +
-            words.length.toLocaleString("ru-RU");
-
-        document.getElementById("catalog-status").textContent =
-            "Словарей в каталоге: " +
-            Object.keys(dictionaries).length.toLocaleString("ru-RU");
-
-        const typeSelect = document.getElementById("catalog-type");
-
-        for (const typeId of Object.keys(types).sort()) {
-            const option = document.createElement("option");
-            option.value = typeId;
-            option.textContent = types[typeId].name;
-            typeSelect.appendChild(option);
-        }
-
+        await loadCatalog();
         showCatalog();
-
+        catalogRendered = true;
     } catch (error) {
-        document.getElementById("status").textContent =
-            "Ошибка загрузки данных: " + error.message;
+        status.textContent = error.message;
     }
 }
 
-
-// Переключение вкладок
-
 function showPage(page) {
-    document.getElementById("search-page").classList.toggle(
-        "hidden", page !== "search"
-    );
-
-    document.getElementById("catalog-page").classList.toggle(
-        "hidden", page !== "catalog"
-    );
-
-    document.getElementById("tab-search").classList.toggle(
-        "active", page === "search"
-    );
-
-    document.getElementById("tab-catalog").classList.toggle(
-        "active", page === "catalog"
-    );
+    document.getElementById("search-page").classList.toggle("hidden", page !== "search");
+    document.getElementById("catalog-page").classList.toggle("hidden", page !== "catalog");
+    document.getElementById("tab-search").classList.toggle("active", page === "search");
+    document.getElementById("tab-catalog").classList.toggle("active", page === "catalog");
+    if (page === "catalog" && !catalogRendered) void refreshCatalog();
 }
 
-
-// Обработчики событий
-
-document.getElementById("tab-search").addEventListener(
-    "click", () => showPage("search")
-);
-
-document.getElementById("tab-catalog").addEventListener(
-    "click", () => showPage("catalog")
-);
-
+document.getElementById("tab-search").addEventListener("click", () => showPage("search"));
+document.getElementById("tab-catalog").addEventListener("click", () => showPage("catalog"));
 document.getElementById("search").addEventListener("click", search);
-
 document.getElementById("word").addEventListener("keydown", event => {
-    if (event.key === "Enter") search();
+    if (event.key === "Enter") void search();
 });
-
-document.getElementById("catalog-search")
-    .addEventListener("input", showCatalog);
-
-document.getElementById("catalog-type")
-    .addEventListener("change", showCatalog);
-
-
-// Запуск приложения
-
-loadData();
+document.getElementById("catalog-search").addEventListener("input", refreshCatalog);
+document.getElementById("catalog-type").addEventListener("change", refreshCatalog);
