@@ -139,6 +139,20 @@
     "search_url": null,
     "word_count": 4579
   },
+  "Krysin": {
+    "id": "Krysin",
+    "name": "Толковый словарь иноязычных слов",
+    "short_name": "Крысин",
+    "author": "Л. П. Крысин",
+    "year": "1998",
+    "types": [
+      "foreign_words"
+    ],
+    "url": null,
+    "description": null,
+    "search_url": null,
+    "word_count": 24229
+  },
   "LargeOrth": {
     "id": "LargeOrth",
     "name": "Большой орфографический словарь русского языка",

@@ -23,6 +23,10 @@
     "id": "explanatory",
     "name": "Основные толковые словари"
   },
+  "foreign_words": {
+    "id": "foreign_words",
+    "name": "Словари иностранных слов"
+  },
   "morphemic&derivational": {
     "id": "morphemic&derivational",
     "name": "Морфемные и словообразовательные словари"
