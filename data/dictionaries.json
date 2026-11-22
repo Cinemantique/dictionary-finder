@@ -97,6 +97,20 @@
     "search_url": "https://gramota.ru/poisk?query=[word]&mode=slovari&dicts[]=49",
     "word_count": 51374
   },
+  "BSE3": {
+    "id": "BSE3",
+    "name": "Большая советская энциклопедия, 3-е издание",
+    "short_name": "БСЭ-3",
+    "author": "Советская энциклопедия",
+    "year": "1969—1978",
+    "types": [
+      "encyclopedias"
+    ],
+    "url": "https://ru.wikipedia.org/wiki/Большая_советская_энциклопедия",
+    "description": null,
+    "search_url": null,
+    "word_count": 40399
+  },
   "kuznetsov": {
     "id": "kuznetsov",
     "name": "Большой толковый словарь русского языка",

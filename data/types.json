@@ -19,6 +19,10 @@
     "id": "orthoepic",
     "name": "Орфоэпические словари"
   },
+  "encyclopedias": {
+    "id": "encyclopedias",
+    "name": "Энциклопедические словари"
+  },
   "explanatory": {
     "id": "explanatory",
     "name": "Основные толковые словари"

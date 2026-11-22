@@ -1,1 +1,1 @@
-const INDEX_SUMMARY = {"wordCount":938850,"dictionaryCount":40,"manifest":"index-0ff60d264bb31451b5ab.json"};
+const INDEX_SUMMARY = {"wordCount":950718,"dictionaryCount":41,"manifest":"index-bc14ca1885fc6f8855b3.json"};

@@ -12,6 +12,7 @@ const TYPE_ORDER = [
     "etymological",
     "phraseological",
     "historical",
+	"encyclopedias",
     "dialectal",
     "synonyms",
     "antonyms",
