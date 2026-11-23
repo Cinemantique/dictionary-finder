@@ -41,6 +41,20 @@
     "search_url": "https://xviii.iling.spb.ru/glossary",
     "word_count": 87258
   },
+  "XIX": {
+    "id": "XIX",
+    "name": "Словарь русского языка XIX века",
+    "short_name": "СлРЯ19",
+    "author": "ИЛИ РАН",
+    "year": "2023—2026",
+    "types": [
+      "historical"
+    ],
+    "url": "https://xix.iling.spb.ru/about",
+    "description": null,
+    "search_url": "https://xix.iling.spb.ru/glossary",
+    "word_count": 2558
+  },
   "akademos": {
     "id": "akademos",
     "name": "Академос",
@@ -74,7 +88,7 @@
     "name": "История слов русского языка",
     "short_name": "ИСРЯ",
     "author": "ИЛИ РАН",
-    "year": "2021-2026",
+    "year": "2021—2026",
     "types": [
       "etymological"
     ],
@@ -97,6 +111,20 @@
     "search_url": "https://gramota.ru/poisk?query=[word]&mode=slovari&dicts[]=49",
     "word_count": 51374
   },
+  "BRE": {
+    "id": "BRE",
+    "name": "Большая российская энциклопедия",
+    "short_name": "БРЭ",
+    "author": "Большая российская энциклопедия",
+    "year": "2004—2017",
+    "types": [
+      "encyclopedias"
+    ],
+    "url": "https://ru.wikipedia.org/wiki/Большая_российская_энциклопедия",
+    "description": "Извлечены только однословные заголовки с первой прописной буквой. Регистр первой буквы изменён, если в Викисловаре имеется слово только со строчной буквой.",
+    "search_url": null,
+    "word_count": 48446
+  },
   "BSE3": {
     "id": "BSE3",
     "name": "Большая советская энциклопедия, 3-е издание",
@@ -107,7 +135,7 @@
       "encyclopedias"
     ],
     "url": "https://ru.wikipedia.org/wiki/Большая_советская_энциклопедия",
-    "description": null,
+    "description": "Извлечены только однословные заголовки с первой прописной буквой. Регистр первой буквы изменён, если в Викисловаре имеется слово только со строчной буквой.",
     "search_url": null,
     "word_count": 40399
   },
@@ -466,7 +494,7 @@
     "name": "Толковый словарь русской разговорной речи",
     "short_name": "ТСРРР",
     "author": "Л. П. Крысин (редактор)",
-    "year": "2014-2022",
+    "year": "2014—2022",
     "types": [
       "other_explanatory"
     ],
@@ -477,10 +505,10 @@
   },
   "Ushakov": {
     "id": "Ushakov",
-    "name": "Толковый словарь русского языка под редакцией Д.Н. Ушакова",
+    "name": "Толковый словарь русского языка (под редакцией Д.Н. Ушакова)",
     "short_name": "Словарь Ушакова",
     "author": "Д. Н. Ушаков",
-    "year": "1940",
+    "year": "1935—1940",
     "types": [
       "explanatory"
     ],
@@ -516,20 +544,6 @@
     "description": "Свободный многоязычный словарь.",
     "search_url": "https://ru.wiktionary.org/wiki/[word]",
     "word_count": 469363
-  },
-  "XIX": {
-    "id": "XIX",
-    "name": "Словарь русского языка XIX века",
-    "short_name": "СлРЯ19",
-    "author": "ИЛИ РАН",
-    "year": "2023-2026",
-    "types": [
-      "historical"
-    ],
-    "url": "https://xix.iling.spb.ru/about",
-    "description": null,
-    "search_url": "https://xix.iling.spb.ru/glossary",
-    "word_count": 2558
   },
   "zaliznyak": {
     "id": "zaliznyak",
