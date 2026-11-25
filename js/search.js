@@ -28,13 +28,20 @@ async function showMatchPage(query, page) {
     searchStatus.textContent = "Поиск по словникам…";
     try {
         const result = await requestSearch("page", { ...query, page, pageSize: RESULTS_PER_PAGE });
-        if (version === searchVersion) renderSearchResults(result, query, page);
+        if (version !== searchVersion) return;
+        if (result.total === 1) {
+            const [word, , dictionaryIds] = result.entries[0];
+            results.replaceChildren();
+            await openWord(word, query.distinguishYo, dictionaryIds, false);
+            return;
+        }
+        renderSearchResults(result, query, page);
     } catch (error) {
         if (version === searchVersion) searchStatus.textContent = error.message;
     }
 }
 
-async function openWord(word, distinguishYo, dictionaryIds) {
+async function openWord(word, distinguishYo, dictionaryIds, fromResults = true) {
     const version = ++searchVersion;
     try {
         const ids = dictionaryIds ?? await requestSearch("lookup", { word, distinguishYo });
@@ -48,6 +55,11 @@ async function openWord(word, distinguishYo, dictionaryIds) {
 
         details.classList.remove("hidden");
         results.classList.add("hidden");
+        if (!fromResults) {
+            searchStatus.textContent = "Найдено словарей: " + ids.length.toLocaleString("ru-RU");
+            showDictionaries(ids, word);
+            return;
+        }
         showDictionaries(ids, word, () => {
             details.classList.add("hidden");
             results.classList.remove("hidden");
