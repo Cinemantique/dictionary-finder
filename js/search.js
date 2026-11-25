@@ -20,12 +20,7 @@ async function search() {
         return;
     }
 
-    if (regex || /[*?]/u.test(query)) {
-        await showMatchPage({ query, regex, distinguishYo }, 1);
-    } else {
-        searchStatus.textContent = "Поиск по словникам…";
-        await openWord(query, distinguishYo);
-    }
+    await showMatchPage({ query, regex, distinguishYo }, 1);
 }
 
 async function showMatchPage(query, page) {
@@ -39,10 +34,10 @@ async function showMatchPage(query, page) {
     }
 }
 
-async function openWord(word, distinguishYo, fromResults = false) {
+async function openWord(word, distinguishYo, dictionaryIds) {
     const version = ++searchVersion;
     try {
-        const ids = await requestSearch("lookup", { word, distinguishYo });
+        const ids = dictionaryIds ?? await requestSearch("lookup", { word, distinguishYo });
         if (version !== searchVersion) return;
         if (!ids.length) {
             searchStatus.textContent = "Слово не найдено.";
@@ -52,12 +47,6 @@ async function openWord(word, distinguishYo, fromResults = false) {
         if (version !== searchVersion) return;
 
         details.classList.remove("hidden");
-        if (!fromResults) {
-            searchStatus.textContent = "Найдено словарей: " + ids.length;
-            showDictionaries(ids, word);
-            return;
-        }
-
         results.classList.add("hidden");
         showDictionaries(ids, word, () => {
             details.classList.add("hidden");
@@ -81,17 +70,17 @@ function renderSearchResults({ entries, total }, query, page) {
 
     const list = document.createElement("div");
     list.className = "word-list";
-    for (const [word, dictionaries] of entries) {
+    for (const [word, dictionaryCount, dictionaryIds] of entries) {
         const row = document.createElement("div");
         row.className = "word-item";
 
         const button = document.createElement("button");
         button.textContent = word;
-        button.addEventListener("click", () => void openWord(word, query.distinguishYo, true));
+        button.addEventListener("click", () => void openWord(word, query.distinguishYo, dictionaryIds));
 
         const count = document.createElement("span");
         count.className = "word-count";
-        count.textContent = "словарей: " + dictionaries;
+        count.textContent = "словарей: " + dictionaryCount;
 
         row.append(button, count);
         list.append(row);

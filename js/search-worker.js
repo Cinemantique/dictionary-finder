@@ -43,18 +43,34 @@ function partsWithPrefix(parts, prefix) {
     );
 }
 
-async function lookup(manifest, word, distinguishYo) {
-    const looseKey = normalize(word, false);
-    const part = manifest.prefix.find(({ first, last }) => looseKey >= first && looseKey <= last);
+async function readHeadwords(manifest, word) {
+    const key = normalize(word, false);
+    const part = manifest.prefix.find(({ first, last }) => key >= first && key <= last);
     if (!part) return [];
     const groups = await readPart(part);
-    if (!Object.hasOwn(groups, looseKey)) return [];
-    const strictKey = normalize(word, true);
-    const entries = groups[looseKey].filter(([headword]) =>
-        !distinguishYo || normalize(headword, true) === strictKey
-    );
+    return Object.hasOwn(groups, key) ? groups[key] : [];
+}
+
+async function matchingHeadwords(manifest, word, distinguishYo) {
+    const entries = await readHeadwords(manifest, word);
+    if (!distinguishYo) return entries;
+    const key = normalize(word, true);
+    return entries.filter(([headword]) => normalize(headword, true) === key);
+}
+
+async function lookup(manifest, word, distinguishYo) {
+    const entries = await matchingHeadwords(manifest, word, distinguishYo);
     const numbers = new Set(entries.flatMap(([, ...ids]) => ids));
     return Array.from(numbers, number => manifest.dictionaryIds[number]);
+}
+
+async function exactMatches(manifest, query, distinguishYo) {
+    const entries = await matchingHeadwords(manifest, query, distinguishYo);
+    return entries.map(([word, ...numbers]) => [
+        word,
+        numbers.length,
+        numbers.map(number => manifest.dictionaryIds[number]),
+    ]).sort(([left], [right]) => compare(left, right));
 }
 
 function countsFor(group) {
@@ -86,6 +102,10 @@ function selectParts(manifest, query, regex) {
 }
 
 async function search(manifest, { query, regex, distinguishYo }) {
+    if (!regex && !/[*?]/u.test(query)) {
+        return exactMatches(manifest, query, distinguishYo);
+    }
+
     const pattern = regex ? prepareRegex(query, distinguishYo) : null;
     const matchesWord = pattern ? word => pattern.test(word) : wildcardMatcher(query, distinguishYo);
     const { parts, fromPrefix } = selectParts(manifest, query, regex);
