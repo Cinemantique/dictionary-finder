@@ -237,6 +237,20 @@
     "search_url": "https://gufo.me/dict/dal/[word]",
     "word_count": 221257
   },
+  "Derksen": {
+    "id": "Derksen",
+    "name": "Etymological Dictionary of the Slavic Inherited Lexicon",
+    "short_name": "Derksen",
+    "author": "Rick Derksen",
+    "year": "2008",
+    "types": [
+      "etymological"
+    ],
+    "url": null,
+    "description": "This dictionary in the Leiden Indo-European Etymological Dictionary Series systematically and exhaustively deals with the Slavic inherited lexicon. It is unique in combining recent insights from the field of comparative Indo-European linguistics with modern Balto-Slavic accentology. In addition, the author makes an explicit attempt at reconstructing part of the Balto-Slavic lexicon.\nThe entries of the dictionary are alphabetically arranged Proto-Slavic etyma. Each lemma consists of a number of fields which contain the evidence, reconstructions and notes. The introduction explains the contents and the significance of the individual fields. Here the reader can also find information on the various sources of the material. The volume concludes with an extensive bibliography of sources and secondary literature, and a word index.",
+    "search_url": "https://archive.org/details/EtymologicalDictionaryOfTheSlavicInheritedLexicon_201310",
+    "word_count": 1938
+  },
   "efremova": {
     "id": "efremova",
     "name": "Большой современный толковый словарь русского языка",
